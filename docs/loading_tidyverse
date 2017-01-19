@@ -1,6 +1,6 @@
 ## Loading tidyverse
 
-As of January 2017 when you install package *tidyverse* 
+As of January 2017 when you install package **tidyverse** 
 
 ```r
 install.packages("tidyverse")
@@ -27,7 +27,7 @@ install.packages("xml2")
 install.packages("modelr")
 install.packages("broom")
 ```
-but loading *tidyverse* only loads some of the packges, as the list below shows. 
+but loading **tidyverse** only loads some of the packges, as the list below shows. 
 
 Packages loaded automatically:
 ```r
