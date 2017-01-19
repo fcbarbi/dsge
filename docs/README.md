@@ -1,6 +1,7 @@
 # tidystats.org
-Statistics with Tidy Data in R
 ================
+Statistics with Tidy Data in R
 
-About tidy data and tiverse
-[Loading tidyverse] (loading_tidyverse)
+1.About tidy data and tiverse
+2.[Loading tidyverse] (loading_tidyverse)
+
