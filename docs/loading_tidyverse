@@ -1,0 +1,58 @@
+## Loading tidyverse
+
+As of January 2017 when you install package *tidyverse* 
+
+```r
+install.packages("tidyverse")
+```
+all the packages below are installed/updated
+```r
+install.packages("ggplot2")
+install.packages("dplyr")
+install.packages("tidyr")
+install.packages("readr")
+install.packages("purrr")
+install.packages("tibble")
+install.packages("hms")
+install.packages("stringr")
+install.packages("lubridate")
+install.packages("forcats")
+install.packages("DBI")
+install.packages("haven")
+install.packages("httr")
+install.packages("jsonlite")
+install.packages("readxl")
+install.packages("rvest")
+install.packages("xml2")
+install.packages("modelr")
+install.packages("broom")
+```
+but loading *tidyverse* only loads some of the packges, as the list below shows. 
+
+Packages loaded automatically:
+```r
+require("ggplot2")
+require("dplyr")
+require("tidyr")
+require("readr")
+require("purrr")
+require("tibble")
+```
+Packages requiring manual load:
+```r
+require("hms")
+require("stringr")
+require("lubridate")
+require("forcats")
+require("DBI")
+require("haven")
+require("httr")
+require("jsonlite")
+require("readxl")
+require("rvest")
+require("xml2")
+require("modelr")
+require("broom")
+```
+
+
