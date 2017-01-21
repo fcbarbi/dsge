@@ -5,6 +5,6 @@ Statistics with Tidy Data in R
 
 1.About tidy data, tidyverse and tidystats
 
-2.[Loading tidyverse] (loading_tidyverse)
+2.[Loading package **tidyverse**] (docs/loading_tidyverse)
 
 3.Continuous distributions
