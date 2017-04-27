@@ -1,10 +1,11 @@
-Statistics with Tidy Data in R
-================
+### Notes on DSGE models 
 
-# Index 
+These notes were compiled for classes delivered on Dynamic Stochastic General Equilibrium models. 
 
-1.About tidy data, tidyverse and tidystats
+Some tools used for simulation and estimation are:
 
-2.[Loading package **tidyverse**] (docs/loading_tidyverse)
+* http://www.dynare.org/
 
-3.Continuous distributions
+* https://github.com/IRIS-Solutions-Team/IRIS-Toolbox/wiki/IRIS-Macroeconomic-Modeling-Toolbox
+
+* https://julialang.org/
