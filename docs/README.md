@@ -1,30 +1,29 @@
 ## DSGE Notes 
-================
 
 ### Index 
 
 1. What are Dynamic Stochastic General Equilibrium Models ? 
   
-1.1.Definitions
-1.2.Uses and Limitations
-1.3.Forecasting with DSGE 
+* Definitions
+* Uses and Limitations
+* Forecasting with DSGE 
 
-2.Background Theory on Real Business Cycles (RBC)
+2. Background Theory on Real Business Cycles (RBC)
 
-3.New Keynesian (NK) models 
+3. New Keynesian (NK) models 
 
-4.Calibration and Simulation
+4. Calibration and Simulation
 
-5.Bayesian Estimation
+5. Bayesian Estimation
 
-6.Tools 
-6.1.Dynare & Matlab 
-6.2.Julia 
+6. Tools 
+* Dynare & Matlab 
+* Julia 
 
-7.Particle Filters (Sequencial Monte Carlo)
+7. Particle Filters (Sequencial Monte Carlo)
 
-8.Markov Switching MS-DSGE Models 
+8. Markov Switching MS-DSGE Models 
 
-9.Other Topics 
-9.1.DSGE-VAR
-9.2.
+9. Other Topics 
+
+* DSGE-VAR
