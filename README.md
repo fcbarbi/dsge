@@ -10,7 +10,7 @@ Tools commonly used for simulation and estimation of DSGE are:
 
 Other great references are:
 
-* Prof [Johannes Pfeifer](https://sites.google.com/site/pfeiferecon/dynare) page where you can find _A Guide to Specifying Observation Equations for the Estimation of DSGE Models_.
+* Prof [Johannes Pfeifer](https://sites.google.com/site/pfeiferecon/dynare) paper _A Guide to Specifying Observation Equations for the Estimation of DSGE Models_ is a great guide to Dynare inner workings.
 
 * Prof [Celso Costa Jr](https://vernonpress.com/title?id=70) book _Understanding DSGE models_ is a great resource for both beginers and practicioners.
 
