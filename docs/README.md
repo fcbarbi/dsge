@@ -1,3 +1,4 @@
+
 ## DSGE Notes 
 
 ### Index 
@@ -27,3 +28,5 @@
 9. Other Topics 
 
 * DSGE-VAR
+
+$$ x^2 + y^2= z^2 $$
