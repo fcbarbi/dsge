@@ -32,4 +32,7 @@ Index
 * DSGE-VAR
 * Forecasting 
 
-Test for LaTeX support: $$ x^2 + y^2= z^2 $$
+Test for LaTeX support: 
+{% raw %} 
+$$ x^2 + y^2= z^2 $$ 
+{% endraw %}
