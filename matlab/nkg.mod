@@ -1,7 +1,24 @@
 
-//NK model with Government - Chapter 7 (UNDERSTANDING DSGE MODELS)
+/*
+===================================================================================
+costa2016_chap7.mod
 
-var Y IIPP I GG CCR CNR G
+NK with Government - Chapter 7
+Understanding DSGE models
+Celso Jose Costa Junior
+
+fcbarbi May 2017
+
+dont't forget:
+addpath /Applications/Dynare/4.4.3/matlab/
+addpath c:\dynare\4.4.3\matlab
+
+===================================================================================
+*/
+
+// NK model with Government - Chapter 7 (UNDERSTANDING DSGE MODELS)
+
+var Y IP IG C CR CNR G
  KP KG L LR LNR
  R W CM P PI PIW Q RB LAMBDAR LAMBDANR
  T tau_c tau_k tau_l TRANS B
@@ -39,11 +56,11 @@ chi = 1;
 //Fiscal Policy Parameters
 gammaG = 0; 
 gammaIG = 0.1;
-gammaTRANS 0.1;
+gammaTRANS = 0.1;
 gammatau_c = 0;
 gammatau_l = 0;
 gammatau_k = 0;
-phiG = O;
+phiG = 0;
 phiIG = -0.1;
 phiTRANS = -0.1;
 phitau_c = 0;
@@ -64,7 +81,7 @@ rhotau_c = 0.9;
 rhotau_l = 0.9;
 rhotau_k = 0.9;
 rhom = 0.9; 
-Psii = (i+tau_css)*((ilbeta)-(1-delta));
+Psi1 = (i+tau_css)*((1/beta)-(1-delta));
 
 model(linear);
 
@@ -78,15 +95,15 @@ model(linear);
 
 #Rss = Pss*((1+tau_css)/(1-tau_kss))*((1/beta)-(1-delta));
 
-#CMss = ((psi-l)lpsi)*(l-beta*theta)*Pss;
+#CMss = ((psi-1)/psi)*(1-beta*theta)*Pss;
 
 #Wss = alpha2*((CMss*0.2-alpha3)-(1/alpha2))*((alpha1/Rss)-(alpha1/alpha2));
 
-#Al= ((1-phic*beta)*((1-phic)^(-sigma))*(1-beta*thetaW)*((psiW-1)/psiW)*((1-tau_lss)/(1+tau_css))*(Wss/Pss)* (Wss/(alpha2*CMss))^phi)^(1/sigma);
+#A1= ((1-phic*beta)*((1-phic)^(-sigma))*(1-beta*thetaW)*((psiW-1)/psiW)*((1-tau_lss)/(1+tau_css))*(Wss/Pss)* (Wss/(alpha2*CMss))^phi)^(1/sigma);
 
 #A2 = (((Rss*(Pss-tau_lss*(1-alpha1)*CMss)-tau_kss*(Rss-delta)*alpha1*CMss)/(Pss*Rss*(1+tau_css)))-(delta*alpha1*CMss/Rss)-(phiB/Pss) *((1/RBss)-1) + phi_TRANS);
 
-#Yss = (A1/A2)-(sigma/(sigma+phi));
+#Yss = (A1/A2)^(sigma/(sigma+phi));
 
 #Bss = phiB*Yss;
 
@@ -96,7 +113,7 @@ model(linear);
 
 #LNRss = Lss;
 
-#KPss = alphal*CMss*(Yss/Rss);
+#KPss = alpha1*CMss*(Yss/Rss);
 
 #IPss = delta*KPss;
 
@@ -104,7 +121,7 @@ model(linear);
 
 #KGss = IGss/deltaG;
 
-#Css = (1/(Yss-(phi/sigma)))*Al;
+#Css = (1/(Yss-(phi/sigma)))*A1;
 #CRss = Css;
 #CNRss = Css;
 
@@ -112,31 +129,34 @@ model(linear);
 
 #TRANSss = phiTRANS*Yss;
 
-#Tss = Pss*Gss + Pss*IGss + Pss*TRANSss - Bss*((l/RBss)-1);
+#Tss = Pss*Gss + Pss*IGss + Pss*TRANSss - Bss*((1/RBss)-1);
 
-#LAMBDARss = ((CRss^(-sigma))*(l-phic*beta)*(1-phic)^(-sigma))/((l+tau_css)*Pss);
+#LAMBDARss = ((CRss^(-sigma))*(1-phic*beta)*(1-phic)^(-sigma))/((1+tau_css)*Pss);
 
-#LAMBDANRss = ((CNRss^(-sigma))*(l-phic*beta)*(1-phic)^(-sigma))/((l+tau_css)*Pss);
+#LAMBDANRss = ((CNRss^(-sigma))*(1-phic*beta)*(1-phic)^(-sigma))/((1+tau_css)*Pss);
 
-#Qss = LAMBDARss*Pss*(l+tau_css);
+#Qss = LAMBDARss*Pss*(1+tau_css);
 
 //1-Ricardian Lagrangian household
-LAMBDAR + P + (tau_cssl(l+tau_css))*tau_c = (sigma/((1-phic)*(1-phic*beta)))*(phic*beta*(CR(+l)-CR)-(CR-CR(-1)));
+LAMBDAR + P + (tau_css/(1+tau_css))*tau_c = (sigma/((1-phic)*(1-phic*beta)))*(phic*beta*(CR(+1)-CR)-(CR-CR(-1)));
 
 //2-Phillips equation for Ricardian household wages
-PIW = beta*PIW(+1)+((1-thetaW)*(1-beta*thetaW)lthetaW)*(phi*LR-LAMBDAR+(tau_lss/(1-tau_lss))*tau_l);
+PIW = beta*PIW(+1)+((1-thetaW)*(1-beta*thetaW)/thetaW)*(phi*LR-LAMBDAR+(tau_lss/(1-tau_lss))*tau_l);
 
 //3-Gross wage inflations
 PIW = W - W(-1);
 
 //4-Ricardian household budget constraint
-Pss*CRss*((P+CR)*(i+tau_css)+tau_css*tau_c) + Pss*IPss*((P+IP)*(l+tau_css)+tau_css*tau_c) + (BsslRBss)*(B-RB) = Wss*LRss*((W+LR)*(l-tau_lss)-tau_lss*tau_l)+Rss*KPss*((R+KP(-1))*(1-tau_kss)-tau_kss*tau_k) + Bss*B(-1) + omegaR*TRANSss*TRANS;
+Pss*CRss*((P+CR)*(1+tau_css)+tau_css*tau_c) + Pss*IPss*((P+IP)*(1+tau_css)+tau_css*tau_c) + (Bss/RBss)*(B-RB) =
+ Wss*LRss*((W+LR)*(1-tau_lss)-tau_lss*tau_l)+Rss*KPss*((R+KP(-1))*(1-tau_kss)-tau_kss*tau_k) + Bss*B(-1) + 
+omegaR*TRANSss*TRANS;
 
 //5-Tobin's Q
-(Qss/beta)*Q = (1-delta)*Qss*Q(+i) + LAMBDARss*Rss*Uss*(1-tau_kss)*(LAMBDAR(+i)+R(+i)+U(+i)-(tau_kss/(1-tau_kss)) *tau_k(+1)) - LAMBDARss*Pss*Uss*Psi1*U(+1);
+(Qss/beta)*Q = (1-delta)*Qss*Q(+1) + LAMBDARss*Rss*Uss*(1-tau_kss)*(LAMBDAR(+1)+R(+1)+U(+1)-(tau_kss/(1-tau_kss)) 
+*tau_k(+1)) - LAMBDARss*Pss*Uss*Psi1*U(+1);
 
 //6-Demand for installed capacity 
-(1-tau_kss)*(Rss/Pss)*(R-P-(tau_kss/(1-tau_kss))*tau_k)=Psi2*Uss*U;
+(1-tau_kss)*(Rss/Pss)*(R-P-(tau_kss/(1-tau_kss))*tau_k) = Psi2*Uss*U;
 
 //7-Demand for investments
 (1+tau_css)*LAMBDARss*Pss*(LAMBDAR+P+(tau_css/(1+tau_css))*tau_c) - Qss*Q+chi*Qss*(IP-IP(-1)) = chi*beta*Qss*(IP(+1)-IP);
@@ -160,7 +180,7 @@ Css*C = omegaR*CRss*CR + (1-omegaR)*CNRss*CNR;
 Lss*L = omegaR*LRss*LR + (1-omegaR)*LNRss*LNR;
 
 //14-Production Function
-Y = A + alphal*(U+KP(-1)) + alpha2*L + alpha3*KG(-1);
+Y = A + alpha1*(U+KP(-1)) + alpha2*L + alpha3*KG(-1);
 
 //15- Problem of the firm trade-off (MRS=Relative price)
 L - U - KP(-1) = R - W;
@@ -184,31 +204,31 @@ Tss*T = tau_css*Pss*(Css*(C+P+tau_c)+IPss*(IP+P+tau_c)) + tau_lss*Wss*Lss*(W+L+t
 KG = (1-deltaG)*KG(-1) + deltaG*IG;
 
 //22-Rule for the movement of public spending
-G = gammaG*G(-1) + (1-gammaG)*phiG*(B(-1)-Y(-1)-P(-l))+SG;
+G = gammaG*G(-1) + (1-gammaG)*phiG*(B(-1)-Y(-1)-P(-1)) + SG;
 
 //23-Rule for the movement of public investment
-IG = gammaIG*IG(-1) + (1-gammaIG)*phiIG*(B(-1)-Y(-1)-P(-i))+SIG;
+IG = gammaIG*IG(-1) + (1-gammaIG)*phiIG*(B(-1)-Y(-1)-P(-1)) + SIG;
 
 //24-Rule for the movement of transfer of income
-TRANS= gammaTRANS*TRANS(-1) + (1-gammaTRANS)*phiTRANS*(B(-1)-Y(-1)-P(-i)) + STRANS;
+TRANS= gammaTRANS*TRANS(-1) + (1-gammaTRANS)*phiTRANS*(B(-1)-Y(-1)-P(-1)) + STRANS;
 
 //25-Rule for the movement of tax on consumption
-tau_c = gammatau_c*tau_c(-1) = (1-gammatau_c)*phitau_c*(B(-1)-Y(-1)-P(-i))+Stau_c;
+tau_c = gammatau_c*tau_c(-1) + (1-gammatau_c)*phitau_c*(B(-1)-Y(-1)-P(-1)) + Stau_c;
 
 //26-Rule for the movement of tax on labor Income
-tau_l = gammatau_l*tau_l(-1) + (1-gammatau_l)*phitau_l*(B(-1)-Y(-1)-P(-i))+Stau_l;
+tau_l = gammatau_l*tau_l(-1) + (1-gammatau_l)*phitau_l*(B(-1)-Y(-1)-P(-1)) + Stau_l;
 
 //27-Rule for the movement of tax on consumption
-tau_k = gammatau_k*tau_k(-1) + (1-gammatau_k)*phitau_k*(B(-1)-Y(-1)-P(-i))+Stau_k;
+tau_k = gammatau_k*tau_k(-1) + (1-gammatau_k)*phitau_k*(B(-1)-Y(-1)-P(-1))+Stau_k;
 
 //28-Taylor's rule
-RB = gammaR*RB(-1)+(1-gammaR)*(gamrnaPI*PI + gammaY*Y)+Sm;
+RB = gammaR*RB(-1) + (1-gammaR)*(gammaPI*PI + gammaY*Y) + Sm;
 
 //29-Equilibrim condition
 Yss*Y = Css*C + IPss*IP + IGss*IG + Gss*G;
 
 //30-Productivity shock
-A = rhoa*A(-1) e; 
+A = rhoa*A(-1) + e; 
 
 //31 - Shock in Public Spending
 SG = rhoG*SG(-1) + e_G; 
@@ -235,7 +255,7 @@ end;
 
 steady;
 
-check(qz_zero_threshold=le-20); 
+check(qz_zero_threshold=1e-20); 
 
 shocks;
 var e; stderr 0.01;
@@ -248,7 +268,7 @@ var e_tau_k; stderr 0.01;
 var e_m; stderr 0.01;
 end; 
 
-stoch_simul(periods=1000,qz_zero_threshold=1e-20) Y IP IG CR CNR G KP KG LR LNR R W UU PI RB T BB tau_c tau_k tau_l TRANS A; 
+stoch_simul(periods=1000,qz_zero_threshold=1e-20) Y IP IG CR CNR G KP KG LR LNR R W U PI RB T B tau_c tau_k tau_l TRANS A; 
 
 // eof 
 
