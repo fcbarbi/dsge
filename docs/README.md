@@ -1,13 +1,15 @@
 
-## DSGE Notes 
+DSGE Notes 
+==========
 
-### Index 
+Index 
+-----
 
-1. What are Dynamic Stochastic General Equilibrium Models ? 
+1. Introduction to DSGE (Dynamic Stochastic General Equilibrium) Models ? 
   
-* Definitions
-* Uses and Limitations
-* Forecasting with DSGE 
+* Definition
+* Parameter Calibration x Estimation 
+* Model Usage and Limitations
 
 2. Background Theory on Real Business Cycles (RBC)
 
@@ -18,7 +20,7 @@
 5. Bayesian Estimation
 
 6. Tools 
-* Dynare & Matlab 
+* Dynare + Matlab 
 * Julia 
 
 7. Particle Filters (Sequencial Monte Carlo)
@@ -28,5 +30,6 @@
 9. Other Topics 
 
 * DSGE-VAR
+* Forecasting 
 
-$$ x^2 + y^2= z^2 $$
+Test for LaTeX support: $$ x^2 + y^2= z^2 $$
